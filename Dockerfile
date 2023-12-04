@@ -24,4 +24,4 @@ RUN pip3 install gunicorn
 
 COPY . .
 
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 main:app
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
