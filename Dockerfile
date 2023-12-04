@@ -4,7 +4,13 @@ FROM python:3.10-slim-buster
 
 MAINTAINER hdinjos
 
-WORKDIR /app
+ENV PYTHONUNBUFFERED True
+
+ENV APP_HOME /app
+
+ENV PORT 5000
+
+WORKDIR $APP_HOME
 
 COPY './requirements.txt' .
 
@@ -14,8 +20,8 @@ RUN pip3 install --upgrade pip
 
 RUN pip3 install -r requirements.txt
 
+RUN pip3 install gunicorn
+
 COPY . .
 
-EXPOSE 8000
-
-CMD ["python3", "app.py"]
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 main:app
