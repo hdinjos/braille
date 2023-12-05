@@ -24,4 +24,9 @@ RUN pip3 install gunicorn
 
 COPY . .
 
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
+ENV PORT 5000
+ENV HOST 0.0.0.0
+
+EXPOSE 5000:5000
+
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]

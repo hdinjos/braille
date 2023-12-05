@@ -111,4 +111,4 @@ def predict():
         return Response(status=400, mimetype="application/json", response=json.dumps(ex))
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=8080)
+	app.run(host='0.0.0.0', port=5000)
